@@ -1,9 +1,9 @@
-# 🛒 Azure Retail Analytics — End-to-End ELT Pipeline
+# Azure Retail Analytics — End-to-End ELT Pipeline
 ### Medallion Architecture (Bronze → Silver → Gold) using Azure Synapse Analytics
 
 ---
 
-## 📌 Project Overview
+##  Project Overview
 
 This project demonstrates a complete, production-style **ELT (Extract, Load, Transform) data pipeline** built on **Azure Synapse Analytics**. Raw retail transaction data is ingested from an HTTP source, cleaned and transformed using **PySpark notebooks**, and finally exposed as a queryable **SQL External Table** using Synapse Serverless SQL Pool.
 
@@ -11,7 +11,7 @@ The pipeline follows the **Medallion Architecture** pattern — a best practice 
 
 ---
 
-## 🏗️ Architecture
+##  Architecture
 
 ```
 [HTTP Source — Raw JSON Data]
@@ -39,11 +39,9 @@ The pipeline follows the **Medallion Architecture** pattern — a best practice 
    SELECT * FROM daily_revenue
 ```
 
-> 📁 Architecture diagram image coming soon
-
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 | Tool | Purpose |
 |---|---|
@@ -57,7 +55,7 @@ The pipeline follows the **Medallion Architecture** pattern — a best practice 
 
 ---
 
-## 📂 Project Structure
+##  Project Structure
 
 ```
 azure-synapse-retail-analytics/
@@ -93,13 +91,13 @@ azure-synapse-retail-analytics/
 
 ## 🔄 Pipeline Walkthrough
 
-### 🥉 Phase 1 — Bronze Layer (Raw Ingestion)
+###  Phase 1 — Bronze Layer (Raw Ingestion)
 - Created a **Copy Data pipeline** in the Synapse Integrate tab
 - Source: HTTP dataset pointing to raw JSON retail transaction data
 - Sink: ADLS Gen2, saved as **Parquet** in the `/bronze` folder
 - Handled data type mapping issues (e.g. `amount` column mapped to `Double` to prevent conversion errors)
 
-### 🥈 Phase 2 — Silver Layer (Data Cleaning with PySpark)
+###  Phase 2 — Silver Layer (Data Cleaning with PySpark)
 - Created an **Apache Spark Pool** to run PySpark notebooks
 - Loaded raw Parquet from the Bronze layer
 - Applied the following transformations:
@@ -109,7 +107,7 @@ azure-synapse-retail-analytics/
   - Cast `amount` to Float for accuracy
 - Saved cleaned output to `/silver` folder as Parquet
 
-### 🥇 Phase 3 — Gold Layer (Aggregation with PySpark)
+### Phase 3 — Gold Layer (Aggregation with PySpark)
 - Loaded cleaned Silver data into a new notebook
 - Grouped data by `event_date`
 - Calculated:
@@ -117,7 +115,7 @@ azure-synapse-retail-analytics/
   - `total_purchases` → `count(*)`
 - Saved final aggregated output to `/gold` folder as Parquet
 
-### 🗄️ Phase 4 — SQL Presentation Layer
+### Phase 4 — SQL Presentation Layer
 - Created a dedicated database `retailpoc` in Synapse Serverless SQL Pool
 - Configured security using **Database Master Key** and **Database Scoped Credentials**
 - Created an **External Data Source** pointing to the ADLS Gen2 storage account
@@ -127,7 +125,7 @@ azure-synapse-retail-analytics/
 
 ---
 
-## 💡 Key Skills Demonstrated
+## Key Skills Demonstrated
 
 - **Medallion Architecture** — Bronze/Silver/Gold data layering
 - **Pipeline Orchestration** — Copy Data activity with schema mapping
@@ -139,7 +137,7 @@ azure-synapse-retail-analytics/
 
 ---
 
-## 🚀 How to Replicate This Project
+## How to Replicate This Project
 
 1. Create an Azure Synapse Analytics workspace with an ADLS Gen2 storage account
 2. Create three folders in your container: `bronze`, `silver`, `gold`
@@ -150,11 +148,11 @@ azure-synapse-retail-analytics/
 
 ---
 
-## 👩‍💻 Author
+## Author
 
 **Sneha Sharon**
-- 💼 [LinkedIn](https://www.linkedin.com/in/) ← *add your LinkedIn URL here*
-- 🐙 [GitHub](https://github.com/) ← *add your GitHub profile URL here*
+- [LinkedIn](https://www.linkedin.com/in/) ← *add your LinkedIn URL here*
+- [GitHub](https://github.com/) ← *add your GitHub profile URL here*
 
 ---
 
